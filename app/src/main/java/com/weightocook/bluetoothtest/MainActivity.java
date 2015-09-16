@@ -83,6 +83,8 @@ public class MainActivity extends AppCompatActivity {
             // Device does not support Bluetooth
             btStatusDisplay.setText("Device does not support Bluetooth");
         }
+        btStatusDisplay.setText("Trying to connect...");
+
         /** Pops up request to enable if found not enabled */
         if (!mBluetoothAdapter.isEnabled()) {
             Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
@@ -94,11 +96,11 @@ public class MainActivity extends AppCompatActivity {
             for (BluetoothDevice device : pairedDevices) {
                 if (device.getName().equals("BLUE")) {
                     mmDevice = device;
+                    btStatusDisplay.setText("Bluetooth device found");
                     break;
                 }
             }
         }
-        btStatusDisplay.setText("Bluetooth device found");
     }
 
     /**
